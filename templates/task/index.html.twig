@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tasks!{% endblock %}
+
+{% block body %}
+
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Desc</th>
+      <th scope="col">Updated at</th>
+      <th scope="col">Status</th>
+      <th scope="col">Project</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in tasks %}
+        <tr>
+            <th scope="row">{{ task.id }}</th>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.updatedAt | date("d-m-Y")  }}</td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.project.name }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

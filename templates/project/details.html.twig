@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project {{ project.name}}!{% endblock %}
+
+{% block body %}
+    <div class='d-flex flex-row action-buttons'>
+        <a class="btn btn-primary" href="{{ path('project_addTask', {'id': project.id}) }}" role="button">
+            Dodaj Zadanie <i class="fas fa-plus-circle"></i>
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#info">Information</a>
+                </li>
+                {% if project.tasks|length > 0 %}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tasks">Tasks</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="tab-content card-body">
+            <div id="info" class="tab-pane active">
+                <h5 class="card-title">{{ project.name }}</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class='row'>
+                            <div class='col-3'>
+                                Description:
+                            </div>
+                            <div class='col-9'>
+                                {{ project.description }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class='row'>
+                            <div class='col-3'>
+                                Created at:
+                            </div>
+                            <div class='col-9'>
+                                {{ project.createdAt | date('d-m-Y')}}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class='row'>
+                            <div class='col-3'>
+                                Status:
+                            </div>
+                            <div class='col-9'>
+                                {{ project.status }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class='row'>
+                            <div class='col-3'>
+                                Type:
+                            </div>
+                            <div class='col-9'>
+                                {{ project.type }}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            {% if project.tasks|length > 0 %}
+            <div id="tasks" class="tab-pane">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Updated at</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Owner</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in project.tasks %}
+                            <tr>
+                                <th scope="row">{{ task.id }}</th>
+                                <td>{{ task.title }}</td>
+                                <td>{{ task.description[:20] ~ '...'}}</td>
+                                <td>{{ task.createdAt | date("d-m-Y")  }}</td>
+                                <td>{{ task.updatedAt | date("d-m-Y")  }}</td>
+                                <td>{{ task.status }}</td>
+                                <td>{{ task.owner.username }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('project_addTaskComment', {'id': task.id}) }}" role="button">
+                                        Add comment <i class="fas fa-plus-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+                
+            {% endif %}
+        </div>
+    </div>
+        
+
+{% endblock %}

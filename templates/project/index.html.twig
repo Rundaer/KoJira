@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projects!{% endblock %}
+
+{% block body %}
+      {% block actions %}
+        <div class='d-flex flex-row action-buttons'>
+          <a class="btn btn-primary" href="{{ path("project_add") }}" role="button">
+            Dodaj Projekt <i class="fas fa-plus-circle"></i>
+          </a>
+        </div>
+      {% endblock actions %}
+
+
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Desc</th>
+      <th scope="col">Expire Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Type</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for project in projects %}
+        <tr>
+            <th scope="row">{{ project.id }}</th>
+            <td>{{ project.name }}</td>
+            <td>{{ project.description }}</td>
+            <td>{{ project.expiresAt | date("d-m-Y")  }}</td>
+            <td>{{ project.status }}</td>
+            <td>{{ project.type }}</td>
+            <td>
+              <ul class="d-flex flex-row justify-content-around actions">
+                <li><a href="{{ url("project_edit", {"id": project.id}) }}"><i class="fas fa-edit"></i></a></li>
+                <li><a href="{{ url("project_details", {"id": project.id}) }}"><i class="fas fa-info-circle"></i></a></li>
+              </ul>
+            </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock body %}
