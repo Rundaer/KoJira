@@ -1,6 +1,6 @@
 /* assets/css/app.css */
-body {
-    background-color: lightgray;
+.logo{
+    max-width: 50px;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSx1QkFBdUI7QUFDdkI7SUFDSSwyQkFBMkI7QUFDL0IsQyIsImZpbGUiOiJhcHAuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogYXNzZXRzL2Nzcy9hcHAuY3NzICovXG5ib2R5IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGdyYXk7XG59Il0sInNvdXJjZVJvb3QiOiIifQ==*/
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSx1QkFBdUI7QUFDdkI7SUFDSSxlQUFlO0FBQ25CLEMiLCJmaWxlIjoiYXBwLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIGFzc2V0cy9jc3MvYXBwLmNzcyAqL1xuLmxvZ297XG4gICAgbWF4LXdpZHRoOiA1MHB4O1xufSJdLCJzb3VyY2VSb290IjoiIn0=*/

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         {% block stylesheets %}
             {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {# {{ encore_entry_link_tags('app') }} #}
+            {{ encore_entry_link_tags('app') }}
 
             <!-- Renders a link tag (if your module requires any CSS)
                  <link rel="stylesheet" href="/build/app.css"> -->
@@ -15,7 +15,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('home_index') }}"><figure><img class='logo' src="{{ asset('logo.svg') }}" alt="logo"></figure></a>
+                <a class="navbar-brand" href="{{ url('home_index') }}"><figure><img class='logo' src="{{ asset('logo.png') }}" alt="logo"></figure></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -47,16 +47,15 @@
                             {% if app.user %}
                                 You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                             {% else %}
-                                <a class="nav-link" href="#">Login</a>
+                                <a class="nav-link" href="{{ path('app_login') }}">Login</a>
                             {% endif %}
-                            
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container m-2">
             {% for message in app.flashes("success") %}
                 <div class="alert alert-success" role="alert">{{ message }}</div>
             {% endfor %}
@@ -82,7 +81,7 @@
             TODO: enter encore 
             https://stackoverflow.com/questions/53230674/unknown-encore-entry-link-tags-function-when-using-webpack-encore-0-21-0
             #}
-            {# {{ encore_entry_script_tags('app') }} #}
+            {{ encore_entry_script_tags('app') }}
 
             <!-- Renders app.js & a webpack runtime.js file
                 <script src="/build/runtime.js"></script>
