@@ -4,8 +4,8 @@
 
 {% block body %}
     <div class='d-flex flex-row action-buttons'>
-        <a class="btn btn-primary" href="{{ path('project_addTask', {'id': project.id}) }}" role="button">
-            Dodaj Zadanie <i class="fas fa-plus-circle"></i>
+        <a class="btn btn-primary" href="{{ path('taskProject_add', {'id': project.id}) }}" role="button">
+            Add task <i class="fas fa-plus-circle"></i>
         </a>
     </div>
 

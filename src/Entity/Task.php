@@ -76,6 +76,11 @@ class Task
     private $comments;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Tasks")
+     */
+    private $owner;
+
+    /**
      * Get id
      *
      * @return integer
@@ -240,6 +245,18 @@ class Task
     public function addComment(Comment $comment)
     {
         $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }

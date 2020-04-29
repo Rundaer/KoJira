@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -34,6 +36,16 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="owner")
+     */
+    private $Tasks;
+
+    public function __construct()
+    {
+        $this->Tasks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,5 +118,36 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->Tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->Tasks->contains($task)) {
+            $this->Tasks[] = $task;
+            $task->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->Tasks->contains($task)) {
+            $this->Tasks->removeElement($task);
+            // set the owning side to null (unless already changed)
+            if ($task->getOwner() === $this) {
+                $task->setOwner(null);
+            }
+        }
+
+        return $this;
     }
 }
