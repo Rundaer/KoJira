@@ -2,3 +2,7 @@
 .logo{
     max-width: 50px;
 }
+
+.action-button-list{
+    list-style: none;
+}

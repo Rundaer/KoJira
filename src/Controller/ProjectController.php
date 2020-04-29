@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Project;
 use App\Entity\Task;
-use App\Form\AuctionType;
+use App\Form\ProjectType;
 use App\Form\CommentType;
 use App\Form\TaskType;
 use Exception;
@@ -46,7 +46,7 @@ class ProjectController extends AbstractController
     {
         $project = new Project();
 
-        $form = $this->createForm(AuctionType::class, $project);
+        $form = $this->createForm(ProjectType::class, $project);
 
         if ($request->isMethod("post")){
             $form->handleRequest($request);
@@ -75,7 +75,7 @@ class ProjectController extends AbstractController
     public function editAction(Request $request, Project $project)
     {
 
-        $form = $this->createForm(AuctionType::class, $project);
+        $form = $this->createForm(ProjectType::class, $project);
 
         if ($request->isMethod("post")) {
             $form->handleRequest($request);
@@ -108,7 +108,6 @@ class ProjectController extends AbstractController
             ]
         );
     }
-
 
     /**
      * @Route("/project/delete/{id}", name="project_delete")

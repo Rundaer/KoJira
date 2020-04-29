@@ -3,13 +3,13 @@
 {% block title %}Projects!{% endblock %}
 
 {% block body %}
-      {% block actions %}
-        <div class='d-flex flex-row action-buttons'>
-          <a class="btn btn-primary" href="{{ path("project_add") }}" role="button">
-            Dodaj Projekt <i class="fas fa-plus-circle"></i>
-          </a>
-        </div>
-      {% endblock actions %}
+  {% block actions %}
+    <div class='d-flex flex-row action-buttons'>
+      <a class="btn btn-primary" href="{{ path("project_add") }}" role="button">
+        Add project <i class="fas fa-plus-circle"></i>
+      </a>
+    </div>
+  {% endblock actions %}
 
 
   <table class="table table-striped">
@@ -34,9 +34,10 @@
             <td>{{ project.status }}</td>
             <td>{{ project.type }}</td>
             <td>
-              <ul class="d-flex flex-row justify-content-around actions">
+              <ul class="action-button-list d-flex flex-row justify-content-around actions">
                 <li><a href="{{ url("project_edit", {"id": project.id}) }}"><i class="fas fa-edit"></i></a></li>
                 <li><a href="{{ url("project_details", {"id": project.id}) }}"><i class="fas fa-info-circle"></i></a></li>
+                <li><a href="{{ url("project_delete", {"id": project.id}) }}"><i class="fas fa-trash"></i></a></li>
               </ul>
             </td>
         </tr>

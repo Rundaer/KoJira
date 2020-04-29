@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/task", name="task_index")
+     * @Route("/tasks", name="task_index")
      */
     public function indexAction()
     {
@@ -28,21 +28,20 @@ class TaskController extends AbstractController
 
 
     /**
-     * @Route("/task/add/{id}", name="task_add")
+     * @Route("/tasks/add", name="task_add")
      *
-     * @param Project $project
      * @param Request $request
      *
      * @return Response
      * @throws Exception
      */
-    public function addTask(Request $request, Project $project)
+    public function addTask(Request $request)
     {
-        
+        $this->denyAccessUnlessGranted("ROLE_USER");
+
         $task = new Task();
         $taskForm = $this->createForm(TaskType::class, $task);
 
-        
         if ($request->isMethod("post")){
 
             $taskForm->handleRequest($request);
@@ -55,8 +54,7 @@ class TaskController extends AbstractController
                     ->setCreatedAt(new \DateTime("now"))
                     ->setUpdatedAt(new \DateTime("now"))
                     ->setStatus(TASK::TASK_ACTIVE)
-                    ->setProject($project)
-                    ->setOwner('test');
+                    ->setOwner($this->getUser());
                 
                 $entityManager->persist($task);
                 $entityManager->flush();
