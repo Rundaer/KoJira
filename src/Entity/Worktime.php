@@ -26,6 +26,11 @@ class Worktime
      */
     private $timeSpend;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Task", inversedBy="worktimes")
+     */
+    private $Task;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Worktime
     public function setTimeSpend(\DateTimeInterface $timeSpend): self
     {
         $this->timeSpend = $timeSpend;
+
+        return $this;
+    }
+
+    public function getTask(): ?Task
+    {
+        return $this->Task;
+    }
+
+    public function setTask(?Task $Task): self
+    {
+        $this->Task = $Task;
 
         return $this;
     }

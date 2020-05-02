@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -69,16 +70,19 @@ class Task
 
 
     /**
-     * @var Comment[]
-     *
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="task")
-     */
-    private $comments;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Tasks")
      */
     private $owner;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Worktime", mappedBy="Task")
+     */
+    private $worktimes;
+
+    public function __construct()
+    {
+        $this->worktimes = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -229,26 +233,6 @@ class Task
         return $this;
     }
 
-    /**
-     * @return Comment[]|ArrayCollection
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    /**
-     * @param Comment $comment
-     *
-     * @return $this
-     */
-    public function addComment(Comment $comment)
-    {
-        $this->comments[] = $comment;
-
-        return $this;
-    }
-
     public function getOwner(): ?User
     {
         return $this->owner;
@@ -257,6 +241,37 @@ class Task
     public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Worktime[]
+     */
+    public function getWorktimes(): Collection
+    {
+        return $this->worktimes;
+    }
+
+    public function addWorktime(Worktime $worktime): self
+    {
+        if (!$this->worktimes->contains($worktime)) {
+            $this->worktimes[] = $worktime;
+            $worktime->setTask($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorktime(Worktime $worktime): self
+    {
+        if ($this->worktimes->contains($worktime)) {
+            $this->worktimes->removeElement($worktime);
+            // set the owning side to null (unless already changed)
+            if ($worktime->getTask() === $this) {
+                $worktime->setTask(null);
+            }
+        }
 
         return $this;
     }

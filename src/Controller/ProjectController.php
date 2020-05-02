@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
 use App\Entity\Project;
 use App\Entity\Task;
 use App\Form\ProjectType;
-use App\Form\CommentType;
 use App\Form\TaskType;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -174,23 +172,5 @@ class ProjectController extends AbstractController
 
         return $this->render("task/add.html.twig", ["taskForm" => $taskForm->createView()]);
     }
-
-    /**
-     * @Route("/project/addTaskComment/{id}", name="project_addTaskComment")
-     *
-     * @param Request $request
-     * @param Task    $task
-     *
-     * @return Response
-     */
-    public function addTaskCommentAction(Request $request, Task $task)
-    {
-        $comment = new Comment();
-        $commentForm = $this->createForm(CommentType::class, $comment);
-        return $this->render("task/addComment.html.twig", ["commentForm" => $commentForm->createView()]);
-    }
-
-
-
     
 }
