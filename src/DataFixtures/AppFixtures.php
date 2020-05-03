@@ -15,62 +15,54 @@ class AppFixtures extends Fixture
         $project_3 = new Project();
         $project_4 = new Project();
         $project_5 = new Project();
-        $project_6 = new Project();
 
         $project_1
             ->setName("KoJira 1.0")
-            ->setDescription("Przykładowy Opis")
-            ->setCreatedAt(new \DateTime("now"))
-            ->setExpiresAt(new \DateTime("+3 months"))
+            ->setDescription("Web application for website")
+            ->setCreatedAt(new \DateTime("3/22"))
+            ->setExpiresAt(new \DateTime("5/22"))
             ->setStatus(Project::STATUS_ACTIVE)
-            ->setType(Project::TYPE_HOME);
+            ->setType(Project::TYPE_WSIZ);
         
         $project_2
-            ->setName("KoJira 1.1")
-            ->setDescription("Przykładowy Opis")
-            ->setCreatedAt(new \DateTime("now"))
-            ->setExpiresAt(new \DateTime("+3 months"))
+            ->setName("Dog house project")
+            ->setDescription("Creating shelter for my dog 'Misza'")
+            ->setCreatedAt(new \DateTime("5/22"))
+            ->setExpiresAt(new \DateTime("+2 months"))
             ->setStatus(Project::STATUS_ACTIVE)
             ->setType(Project::TYPE_WSIZ);
         
         $project_3
-            ->setName("KoJira 1.2")
-            ->setDescription("Przykładowy Opis")
-            ->setCreatedAt(new \DateTime("now"))
-            ->setExpiresAt(new \DateTime("+3 months"))
-            ->setStatus(Project::STATUS_FINISHED)
-            ->setType(Project::TYPE_WSIZ);
+            ->setName("Wedding!")
+            ->setDescription("I am getting married")
+            ->setCreatedAt(new \DateTime("1/1"))
+            ->setExpiresAt(new \DateTime("11/14"))
+            ->setStatus(Project::STATUS_ACTIVE)
+            ->setType(Project::TYPE_HOME);
         
         $project_4
-            ->setName("KoJira 1.3")
-            ->setDescription("Przykładowy Opis")
-            ->setCreatedAt(new \DateTime("now"))
-            ->setExpiresAt(new \DateTime("+3 months"))
-            ->setStatus(Project::STATUS_ACTIVE)
-            ->setType(Project::TYPE_WORK);
-        
-        $project_5
-            ->setName("KoJira 1.4")
-            ->setDescription("Przykładowy Opis")
+            ->setName("Brother Website")
+            ->setDescription("Gatsby.js project for website")
             ->setCreatedAt(new \DateTime("now"))
             ->setExpiresAt(new \DateTime("+3 months"))
             ->setStatus(Project::STATUS_ACTIVE)
             ->setType(Project::TYPE_HOME);
         
-        $project_6
-            ->setName("KoJira 1.5")
-            ->setDescription("Przykładowy Opis")
-            ->setCreatedAt(new \DateTime("now"))
+        $project_5
+            ->setName("Tree house")
+            ->setDescription("Making secret base!")
+            ->setCreatedAt(new \DateTime("6/5"))
             ->setExpiresAt(new \DateTime("+3 months"))
             ->setStatus(Project::STATUS_ACTIVE)
-            ->setType(Project::TYPE_WSIZ);
+            ->setType(Project::TYPE_HOME);
+        
+
         
         $manager->persist($project_1);
         $manager->persist($project_2);
         $manager->persist($project_3);
         $manager->persist($project_4);
         $manager->persist($project_5);
-        $manager->persist($project_6);
 
         $manager->flush();
     }

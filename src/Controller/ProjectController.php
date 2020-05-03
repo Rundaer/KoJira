@@ -172,5 +172,21 @@ class ProjectController extends AbstractController
 
         return $this->render("task/add.html.twig", ["taskForm" => $taskForm->createView()]);
     }
+
+    /**
+     * @Route("/project/deleteTask/{id}", name="project_deleteTask")
+     */
+    public function deleteTask(Task $task)
+    {
+        $project = $task->getProject();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($task);
+        $entityManager->flush();
+
+        $this->addFlash("success", "Task has been deleted");
+
+        return $this->redirectToRoute("project_details", ["id" => $project->getId()]);
+    }
     
 }

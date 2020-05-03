@@ -94,7 +94,9 @@
                                 <td>{{ task.status }}</td>
                                 <td>{{ task.owner.username }}</td>
                                 <td>
-                                    
+                                    <ul class="action-button-list d-flex flex-row justify-content-around actions">
+                                        <li><a href="{{ url("project_deleteTask", {"id": task.id}) }}"><i class="fas fa-trash"></i></a></li>
+                                    </ul>
                                 </td>
                             </tr>
                         {% endfor %}
