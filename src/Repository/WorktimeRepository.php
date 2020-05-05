@@ -20,14 +20,24 @@ class WorktimeRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Worktime[] Returns an array of Worktime objects
+    //  * @return Worktime[], Task[] Returns an array of Worktime objects
     //  */
     
     public function findAllExtend()
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT w FROM App:Worktime w ORDER BY w.id ASC')
-            ->getResult();
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT w.*, tasks.title
+            FROM worktime w
+            LEFT JOIN tasks ON w.task_id = tasks.id;
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll()
+        ;
     }
     
 

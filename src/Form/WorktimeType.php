@@ -32,7 +32,7 @@ class WorktimeType extends AbstractType
             ->add("description", TextareaType::class)
             ->add('timeSpend', TimeType::class, [
                 'placeholder' => [
-                    'hour' => 'Hour', 'minute' => 'Minute', 'second' => 'Second',
+                    'hour' => 'Hour', 'minute' => 'Minute'
                 ]    
             ])
             ->add("submit", SubmitType::class);

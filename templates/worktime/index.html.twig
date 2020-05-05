@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Task</th>
       <th scope="col">Description</th>
       <th scope="col">Time spend</th>
     </tr>
@@ -16,8 +17,9 @@
     {% for worktime in worktimes %}
         <tr>
             <th scope="row">{{ worktime.id }}</th>
+            <td>{{ worktime.title }}</td>
             <td>{{ worktime.description }}</td>
-            <td>{{ worktime.timeSpend | date("d-m-Y")  }}</td>
+            <td>{{ worktime.time_spend | date("H:i")  }}</td>
         </tr>
     {% endfor %}
   </tbody>

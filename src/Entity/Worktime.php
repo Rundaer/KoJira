@@ -22,7 +22,7 @@ class Worktime
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="time")
      */
     private $timeSpend;
 
