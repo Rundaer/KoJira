@@ -42,6 +42,10 @@ class ProjectController extends AbstractController
      */
     public function addAction(Request $request)
     {
+        if(!$this->isGranted('ROLE_ADMIN')){
+            throw $this->createAccessDeniedException('not allowed');
+        }
+               
         $project = new Project();
 
         $form = $this->createForm(ProjectType::class, $project);
@@ -72,6 +76,7 @@ class ProjectController extends AbstractController
      */
     public function editAction(Request $request, Project $project)
     {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
         $form = $this->createForm(ProjectType::class, $project);
 
@@ -116,6 +121,8 @@ class ProjectController extends AbstractController
      */
     public function deleteAction(Project $project)
     {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
+        
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($project);
         $entityManager->flush();
@@ -136,7 +143,7 @@ class ProjectController extends AbstractController
      */
     public function addTask(Request $request, Project $project)
     {
-        $this->denyAccessUnlessGranted("ROLE_USER");
+        $this->denyAccessUnlessGranted(["ROLE_ADMIN","ROLE_USER"]);
 
         $task = new Task();
         $taskForm = $this->createForm(TaskType::class, $task);
@@ -178,6 +185,8 @@ class ProjectController extends AbstractController
      */
     public function deleteTask(Task $task)
     {
+        $this->denyAccessUnlessGranted(["ROLE_ADMIN","ROLE_USER"]);
+
         $project = $task->getProject();
 
         $entityManager = $this->getDoctrine()->getManager();

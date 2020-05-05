@@ -38,7 +38,7 @@ class TaskController extends AbstractController
      */
     public function addTask(Request $request)
     {
-        $this->denyAccessUnlessGranted("ROLE_USER");
+        $this->denyAccessUnlessGranted(["ROLE_ADMIN","ROLE_USER"]);
 
         $task = new Task();
         $taskForm = $this->createForm(TaskType::class, $task);
@@ -83,7 +83,7 @@ class TaskController extends AbstractController
      */
     public function addTaskProject(Request $request, Project $project)
     {
-        $this->denyAccessUnlessGranted("ROLE_USER");
+        $this->denyAccessUnlessGranted(["ROLE_ADMIN","ROLE_USER"]);
 
         $task = new Task();
         $taskForm = $this->createForm(TaskProjectType::class, $task);

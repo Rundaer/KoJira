@@ -34,6 +34,7 @@ class WorktimeController extends AbstractController
      */
     public function addAction(Request $request)
     {
+        $this->denyAccessUnlessGranted("ROLE_USER");
         $worktime = new Worktime();
 
         $form = $this->createForm(WorktimeType::class, $worktime);

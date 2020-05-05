@@ -1,0 +1,3 @@
+- Ograniczyć dostępy do aplikacji dla ról admin/user
+- połączyć zadania z użytkownikami
+- Admin przypisuje zadania dla użytkowników
